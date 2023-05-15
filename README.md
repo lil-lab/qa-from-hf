@@ -13,7 +13,7 @@ Code for [_Learning to Answer Questions from Human Feedback_]().
 
 ## Basics
 Brief intro to each folder and file at the root:
-1. 2. `data-collection/`: Examples and qualification tests designed for our user study. 
+1. `data-collection/`: Examples and qualification tests designed for our user study. 
 2. `data/`: All the data we collected for both the long-term study and analysis on model variants. You could use these data to reproduce our results. 
 3. `scripts/`: Example scripts for training and testing the models.
 4. `src/`: `data.py` is the script for loading the data; `eval.py` is the script for evaluation.
