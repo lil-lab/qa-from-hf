@@ -6,6 +6,7 @@ Code for [_Learning to Answer Questions from Human Feedback_]().
 - [Data](#data)
 - [Installation](#installation)
 - [Training Piepeline](#training-pipeline)
+- [Evaluation](#evaluation)
 - [Reproduction](#reproduction)
   - [Long-Term Study](#long-term-study)
   - [Analysis on Model Variants](#analysis-on-model-variants)
@@ -22,8 +23,8 @@ Brief intro to each folder and file at the root:
 7. `generate_prob.py`: 
 8. `random_indices_squad2.txt`:
 9. `random_indices_tydi.txt`:
-10. `model.py`:
-11. `rehearsal.py`:
+10. `model.py`: Script for model defination.
+11. `rehearsal.py`: Training script.
 
 To Do: double checking - we don't need the run_tydi.py?
 
@@ -63,7 +64,11 @@ We train an initial DeBERTaV3 model on a set of random sampled 512 SQuAD2 exampl
 ### 2. Bandit Learning
 We iteratively improve the model via multiple rounds of user interaction.
 
-ToDo: add eaxamples?
+ToDo: add eaxamples? hyperparamter part
+
+
+## Evaluation
+ToDo: add instruction on how to evaluate the model
 
 ## Reproduction
 
