@@ -1,0 +1,7 @@
+feedback	data/Dev-400.jsonl.gz
+feedback	data/full-test-long-term.jsonl.gz
+feedback	data/static-test.jsonl.gz
+feedback    data/full-test-parallel.jsonl.gz
+tydi	data/tydiqa-v1.0-dev.jsonl.gz
+squad2	-
+squad	-

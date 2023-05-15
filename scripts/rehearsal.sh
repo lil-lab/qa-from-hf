@@ -1,0 +1,40 @@
+python rehearsal.py   --do_train  \
+                      --do_eval   \
+                      --model microsoft/deberta-v3-base   \
+                      --train_file [train_file_name]   \
+                      --initial_train_file data/tydiqa-v1.0-train-90%.jsonl.gz   \
+                      --dev_file data/Dev-400.jsonl.gz   \
+                      --train_batch_size 30   \
+                      --gradient_accumulation_steps 5   \
+                      --eval_batch_size 6    \
+                      --negative_reward -0.1   \
+                      --partial_reward 0.5   \
+                      --num_train_epochs 30   \
+                      --learning_rate 3e-6   \
+                      --eval_per_epoch 4   \
+                      --max_seq_length 512   \
+                      --doc_stride 512   \
+                      --na_prob_thresh 0   \
+                      --output_dir [output_dir]   \
+                      --version_2_with_negative   \
+                      --prepend_title   \
+                      --setup offline   \
+                      --eval_metric f1   \
+                      --valid_data_type feedback   \
+                      --tag fewer2   --seed 42   \
+                      --load_log_prob   \
+                      --wandb   \
+                      --round_index 7   \
+                      --reward_wrong_unans -1   \
+                      --reward_correct_unans 1   \
+                      --reward_correct_span 1   \
+                      --reward_class_wrong 0   \
+                      --reward_class_correct_ans 1   \
+                      --entropy_coeff 5.0   \
+                      --train_mode random   \
+                      --initialize_model_from_checkpoint [model_path]   \
+                      --checkpoint_name saved_checkpoint    \
+                      --turn_off_dropout   \
+                      --add_classifier   \
+                      --scheduler linear   \
+                      --rehearsal   
