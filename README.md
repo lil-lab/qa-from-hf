@@ -65,12 +65,12 @@ We iteratively improve the model via multiple rounds of user interaction
 
 ToDo: add eaxamples?
 
-#### Reproduce Our Experiments
-##### Long-Term Study
+### Reproduce Our Experiments
+#### Long-Term Study
 1. Follow the steps in [Initial Training](#initial-training) to get a 512-SQuAD2 initial model.
 2. To be completed
 
-#### Analysis on Model Variants
+### Analysis on Model Variants
 
 To be completed
 
