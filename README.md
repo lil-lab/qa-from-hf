@@ -4,21 +4,29 @@ Code for [_Learning to Answer Questions from Human Feedback_]().
 ## Table of Contents
 - [Basics](#basics)
 - [Data](#data)
-- [Installation](#installation)
 - [Reproduction](#reproduction)
+  - [Installation](#installation)
   - [Piepeline](#pipeline)
   - [Long-Term Study](#long-term-study)
   - [Analysis on Model Variants](#analysis-on-model-variants)
 - [Citation](#citation)
 
 ## Basics
-Brief intro for each folder:
-1. `data/`: All the data we collected for both the long-term study and analysis on model variants. You could use these data to reproduce our results. 
-2. `data-collection/`: Examples and qualification tests designed for our user study. 
+Brief intro to each folder and file at the root:
+1. 2. `data-collection/`: Examples and qualification tests designed for our user study. 
+2. `data/`: All the data we collected for both the long-term study and analysis on model variants. You could use these data to reproduce our results. 
 3. `scripts/`: Example scripts for training and testing the models.
 4. `src/`: `data.py` is the script for loading the data; `eval.py` is the script for evaluation.
 5. `src_analysis/`: Scripts for analyzing the results. 
 6. `src_utils/`: Miscellaneous utility functions.
+7. `generate_prob.py`: 
+8. `random_indices_squad2.txt`:
+9. `random_indices_tydi.txt`:
+10. `model.py`:
+11. `rehearsal.py`:
+
+To Do: double checking - we don't need the run_tydi.py?
+
 
 ## Data
 You can find all the data in `data` folder:
@@ -34,7 +42,9 @@ You can find all the data in `data` folder:
 - ToDo: link to the NewsQA training data
 
 
-## Installation
+
+## Reproduction
+### Installation
 1. This project is developed in Python 3.6. Using Conda to set up a virtual environment is recommended.
 
 2. Install the required dependencies. 
@@ -44,8 +54,6 @@ You can find all the data in `data` folder:
     
 3. Install PyTorch from http://pytorch.org/.
 
-
-## Reproduction
 ### Pipeline
 #### 1. Initial Training
 We train an initial DeBERTaV3 model on a set of random sampled 512 SQuAD2 examples, or on NewsQA.
@@ -57,12 +65,12 @@ We iteratively improve the model via multiple rounds of user interaction
 
 ToDo: add eaxamples?
 
-### Reproduce Our Experiments
-#### Long-Term Study
+#### Reproduce Our Experiments
+##### Long-Term Study
 1. Follow the steps in [Initial Training](#initial-training) to get a 512-SQuAD2 initial model.
 2. To be completed
 
-### Analysis on Model Variants
+#### Analysis on Model Variants
 
 To be completed
 
