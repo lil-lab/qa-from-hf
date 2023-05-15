@@ -4,9 +4,9 @@ Code for [_Learning to Answer Questions from Human Feedback_]().
 ## Table of Contents
 - [Basics](#basics)
 - [Data](#data)
+- [Installation](#installation)
+- [Training Piepeline](#training-pipeline)
 - [Reproduction](#reproduction)
-  - [Installation](#installation)
-  - [Training Piepeline](#training-pipeline)
   - [Long-Term Study](#long-term-study)
   - [Analysis on Model Variants](#analysis-on-model-variants)
 - [Citation](#citation)
@@ -43,8 +43,7 @@ You can find all the data in `data` folder:
 
 
 
-## Reproduction
-### Installation
+## Installation
 1. This project is developed in Python 3.6. Using Conda to set up a virtual environment is recommended.
 
 2. Install the required dependencies. 
@@ -54,16 +53,19 @@ You can find all the data in `data` folder:
     
 3. Install PyTorch from http://pytorch.org/.
 
-### Training Pipeline
-#### 1. Initial Training
+
+## Training Pipeline
+### 1. Initial Training
 We train an initial DeBERTaV3 model on a set of random sampled 512 SQuAD2 examples, or on NewsQA.
 - SQuAD2-initialized model: Run `pretrain.sh` after replacing `output_dir` with the directory you want to save the model.
 - NewsQA-initialized model: Run `pretrain.sh` after changing `data_type` to `newsqa`, removing `--num_initial_data 512`, and replacing `output_dir` with the directory you want to save the model.
 
-#### 2. Bandit Learning
+### 2. Bandit Learning
 We iteratively improve the model via multiple rounds of user interaction.
 
 ToDo: add eaxamples?
+
+## Reproduction
 
 ### Long-Term Study
 1. Follow the steps in [Initial Training](#initial-training) to get a 512-SQuAD2 initial model.
