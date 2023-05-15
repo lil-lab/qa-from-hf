@@ -875,9 +875,9 @@ if __name__ == "__main__":
         required=True,
         help="The output directory where the model checkpoints and predictions will be written.")
     parser.add_argument("--train_file",
-                        default='data/train-460.jsonl.gz',
+                        default='',
                         type=str,
-                        help="SQuAD json for training. E.g., train-v1.1.json")
+                        help="text file containing the data from current round and data from all previous rounds")
     parser.add_argument("--initial_train_file",
                         default='data/tydiqa-v1.0-train-90%.jsonl.gz',
                         type=str,
@@ -898,7 +898,7 @@ if __name__ == "__main__":
         help="The maximum total input sequence length after WordPiece tokenization. Sequences "
         "longer than this will be truncated, and sequences shorter than this will be padded.")
     parser.add_argument("--doc_stride",
-                        default=128,
+                        default=512,
                         type=int,
                         help="When splitting up a long document into chunks, "
                         "how much stride to take between chunks.")
@@ -934,7 +934,7 @@ if __name__ == "__main__":
     parser.add_argument("--eval_metric", default='f1', type=str)
     parser.add_argument("--train_mode",
                         type=str,
-                        default='random_sorted',
+                        default='random',
                         choices=['random', 'sorted', 'random_sorted'])
     parser.add_argument(
         "--warmup_proportion",
@@ -996,19 +996,19 @@ if __name__ == "__main__":
                         type=float,
                         help='value for negative update')
     parser.add_argument('--reward_wrong_unans',
-                        default=-2,
+                        default=-1,
                         type=float,
                         help='value for negative update')
     parser.add_argument('--reward_correct_span',
-                        default=2,
+                        default=1,
                         type=float,
                         help='value for negative update')
     parser.add_argument('--reward_correct_unans',
-                        default=0.4,
+                        default=1,
                         type=float,
                         help='value for negative update')
     parser.add_argument('--reward_class_wrong',
-                        default=-1,
+                        default=0,
                         type=float,
                         help='value for wrong classification prediction')
     parser.add_argument('--reward_class_correct_ans',
@@ -1035,7 +1035,7 @@ if __name__ == "__main__":
     parser.add_argument('--feedback_as_valid',
                         action='store_true',
                         help='whether use feedback data as validation data')
-    parser.add_argument('--valid_data_type', type=str, help='which data type to valid on')
+    parser.add_argument('--valid_data_type', type=str, help='which data type to valid on', default='feedback')
     parser.add_argument('--tag', type=str, default='', help='wandb tag for experiments')
     parser.add_argument('--checkpoint_name', type=str, default='saved_checkpoint')
     parser.add_argument('--not_save',

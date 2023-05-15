@@ -1,4 +1,6 @@
 #!/bin/bash
+# replace [output_dir] with the directory you want to save the model
+# replace data_type with newsqa and remove "--num_initial_data 512" to train on NewsQA dataset
 python run_tydi.py \
   --do_train \
   --do_eval \
@@ -21,4 +23,4 @@ python run_tydi.py \
   --output_dir [output_dir] \
   --num_initial_data 512 \
   --add_classifier \
-  --random_indices rand/random_indices_squad2.txt 
+  --random_indices random_indices_squad2.txt 
