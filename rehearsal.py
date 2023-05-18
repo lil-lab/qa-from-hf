@@ -867,7 +867,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", default=None, type=str, required=True)
+    parser.add_argument("--model", default='microsoft/deberta-v3-base', type=str, required=True)
     parser.add_argument(
         "--output_dir",
         default=None,
@@ -888,7 +888,7 @@ if __name__ == "__main__":
                         help="SQuAD json for predictions. E.g., dev-v1.1.json or test-v1.1.json")
     parser.add_argument("--test_file", default=None, type=str)
     parser.add_argument("--eval_per_epoch",
-                        default=10,
+                        default=4,
                         type=int,
                         help="How many times it evaluates on dev set per epoch")
     parser.add_argument(

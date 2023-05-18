@@ -2,13 +2,13 @@
 # remove --wandb to disable wandb logging
 # remove --add_classifier to disable classifier for answerability
 
-# replace train_file_name with the text file containing the list of training files, which contain 2 lines, one being the path to the current round data and the other to the data from all previous rounds
+# train_files.txt should contain 2 lines, one being the path to the current round data and the other to the data from all previous rounds
 # replace output_dir with the directory to the saved model (and log)
 # replace model_path with the path to the model from previous round (or initial model)
 python rehearsal.py   --do_train  \
                       --do_eval   \
                       --model microsoft/deberta-v3-base   \
-                      --train_file [train_file_name]   \
+                      --train_file train_files.txt   \
                       --output_dir [output_dir]   \
                       --initialize_model_from_checkpoint [model_path]   \
                       --dev_file data/Dev-400.jsonl.gz   \
