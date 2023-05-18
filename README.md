@@ -3,16 +3,15 @@
 Code for [_Continually Improving Extractive QA via Human Feedback_](). Please contact the first authors by email if you have any question.
 
 ## Table of Contents
-- [qa-from-hf](#qa-from-hf)
-  - [Table of Contents](#table-of-contents)
-  - [Basics](#basics)
-  - [Data](#data)
-  - [Installation](#installation)
-  - [Reproduction](#reproduction)
-    - [Initial Training](#initial-training)
-    - [Bandit Learning](#bandit-learning)
-  - [Evaluation](#evaluation)
-  - [Citation](#citation)
+- [Table of Contents](#table-of-contents)
+- [Basics](#basics)
+- [Data](#data)
+- [Installation](#installation)
+- [Reproduction](#reproduction)
+  - [Initial Training](#initial-training)
+  - [Bandit Learning](#bandit-learning)
+- [Evaluation](#evaluation)
+- [Citation](#citation)
 
 ## Basics
 Brief intro to each folder and file at the root:
