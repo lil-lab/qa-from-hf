@@ -76,7 +76,7 @@ An example script for experiments on different model variants:
 
       python src_utils/write_data_file.py --exp variants  --r_idx 1 --variant fewer
 
-`fewer` for fewer examples per round, to do: complete this part
+`fewer` for fewer examples per round,  `default` for default setup, `newsqa` for domain adaptation from NewsQA, `noclass` for ablation on classification head, and `weaker` for starting with a weaker initial model.
 
 2. Training: Run `train_bandit.py` to do bandit learning. We perform hyperparameter tuning on `num_train_epochs`, `learning_rate` and `entropy_coeff` as mentioned in the paper.   
 An example script is provided below: (refer to `scripts/train_bandit.sh` for more details.)    
