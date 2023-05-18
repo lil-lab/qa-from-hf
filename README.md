@@ -2,7 +2,6 @@
 Code for [_Continually Improving Extractive QA via Human Feedback_](). Please contact the first authors by email if you have any question.
 
 ## Table of Contents
-- [Table of Contents](#table-of-contents)
 - [Basics](#basics)
 - [Data](#data)
 - [Installation](#installation)
