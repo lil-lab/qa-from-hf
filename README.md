@@ -67,8 +67,7 @@ We train an initial DeBERTaV3 model on a set of random sampled 512 SQuAD2 exampl
 - To Do: add the model without CLS head
 
 ### Bandit Learning
-We iteratively improve the model via multiple rounds of user interaction.  
-The steps of performing bandit learning are as follows:
+We iteratively improve the model via multiple rounds of user interaction. At each round, the pipelien is to specify the feedback data for training, and then conduct the bandit learning. Concrete steps are as follows:
 
 1. Specifiy Training Data: Before each round of bandit learning, you should specify the training data by modifying `train_files.txt`. To do so, you could simply run `src_utils/write_data_file.py` with corresponding arguments.  
 
@@ -84,7 +83,7 @@ An example script for experiments on different model variants:
 
 2. Training: Run `rehearsal.py` to do bandit learning. We perform hyperparameter tuning on `num_train_epochs`, `learning_rate` and `entropy_coeff` as mentioned in the paper.   
 An example script is provided below: (refer to `scripts/rehearsal.sh` for more details.)    
-You should specify the output directory (for storing the model and training log) and the model path you started with. The model path should be that of the initial model.  
+You should specify `output_dir` which is the the output directory (for storing the model and training log) and, `initialize_model_from_checkpoint` which is the path to the model that you want to start with. For Round 1, this model path should be that of an initial model obtrained from inital training.
 
         python rehearsal.py   --do_train  \
                               --do_eval   \
@@ -104,8 +103,9 @@ You should specify the output directory (for storing the model and training log)
                               --turn_off_dropout   \
                               --add_classifier   \
                               --rehearsal   
-                    
-3. Go back to step 1. for the second round. In step 2. next round, specify the `\[model_path\]` to be the best-performing model on the development set from the previous round.  
+
+
+For the next round of bandit learning, repeat the above 2 steps. At every round, remember to change `\[model_path\]` in step 2 to be the best-performing model on the development set from the previous round.  
 
 ## Evaluation
 ToDo: add instruction on how to evaluate the model
