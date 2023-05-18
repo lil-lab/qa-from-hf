@@ -22,17 +22,17 @@ Brief intro to each folder and file at the root:
 5. `src_analysis/`: Scripts for analyzing the results. 
 6. `src_utils/`: Miscellaneous utility functions.
 7. `generate_prob.py`: The script we used to store the generation probability in the data files.
-8. `random_indices_squad2.txt`: The random indices we use to shuffle the SQuAD2.0 initial data. Will need this file to reproduce the initial model.
+8. `random_indices_squad2.txt`: The random indices we use to shuffle the SQuAD2.0 initial data. Will need this file to reproduce our initial model.
 9.  `model.py`: Script for model defination.
 10. `rehearsal.py`: Training script for bandit learning.
 11. `run_tydi.py`: Training script for initial model training.
 
 
 ## Data
-We are using [squad_v2](https://huggingface.co/datasets/squad_v2) on huggingface for SQuAD2-initialized models.   
+We are using [squad_v2](https://huggingface.co/datasets/squad_v2) dataset on Hugging Face for SQuAD2-initialized models.   
 We use the NewsQA data from [TODO: this_link](https://newsqa_link.link). 
 
-You can find all the other data in `data` folder:
+You can find all other data used in our paper in the `data` folder:
 - `train/`: Feedback data collected in the long-term deployment study.
 - `train_parallel/`: Feedback data collected in the model variant study.
 - `Dev.jsonl.gz`: The development set we use for hyperparameter tuning. We collected this set individually. 
@@ -41,8 +41,7 @@ You can find all the other data in `data` folder:
 - `full-test-parallel.jsonl.gz`: Full test set collected concurrently with the feedback data during the study of different model variants. 
 - `tydiqa-v1.0-dev.jsonl.gz`: TyDiQA development set. We only consider the English portion and exclude the Yes/No questions. 
 - `test_feedback.txt`: This text file should contain the dataset you would like to evaluate your model on. Each line is formatted as \[feedback type\]\\t\[file name\].
-- ToDo: add the 512-SQuAD2 example files -> we don't need this since we are using [squad_v2](https://huggingface.co/datasets/squad_v2) on huggingface for SQuAD2-initialized models. And we use `random_indices_squad2.txt` to shuffle the dataset. 
-- ToDo: link to the NewsQA training data
+
 
 
 
