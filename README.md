@@ -109,7 +109,7 @@ For the next round of bandit learning, repeat the above 2 steps. At every round,
 
 ## Evaluation
 You should modify `test_files.txt` first to indicate which files you would like to test on. Each line represents a test file, and should be formatted as \[feedback type\]\\t\[file name\].  
-The `test_files.txt` in the repo list all the possible sets to evaluate on. 
+The example `test_files.txt` in the repo list all the possible sets to evaluate on. 
 
 To run evaluation, simply run `train_bandit.py` with proper arguments.  
 Let's say you store the model at path "`/path/to/model/saved_checkpoint`". An example script is as follows: (refer to `scripts/test.sh` for more details)  
