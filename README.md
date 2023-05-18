@@ -1,3 +1,4 @@
+# To Be Completed...
 # qa-from-hf
 Code for [_Continually Improving Extractive QA via Human Feedback_](). Please contact the first authors by email if you have any question.
 
@@ -7,13 +8,10 @@ Code for [_Continually Improving Extractive QA via Human Feedback_](). Please co
   - [Basics](#basics)
   - [Data](#data)
   - [Installation](#installation)
-  - [Training Pipeline](#training-pipeline)
+  - [Reproduction](#reproduction)
     - [Initial Training](#initial-training)
     - [Bandit Learning](#bandit-learning)
   - [Evaluation](#evaluation)
-  - [Reproduction](#reproduction)
-    - [Long-Term Study](#long-term-study)
-    - [Analysis on Model Variants](#analysis-on-model-variants)
   - [Citation](#citation)
 
 ## Basics
@@ -60,11 +58,13 @@ You can find all the other data in `data` folder:
 3. Install PyTorch from http://pytorch.org/.
 
 
-## Training Pipeline
+## Reproduction
 ### Initial Training
 We train an initial DeBERTaV3 model on a set of random sampled 512 SQuAD2 examples, or on NewsQA.
-- SQuAD2-initialized model: Run `pretrain.sh` after replacing `output_dir` with the directory you want to save the model.
+- 512-SQuAD2-initialized model: Run `pretrain.sh` after replacing `output_dir` with the directory you want to save the model.
+- 128-SQuAD2-initialized model: Run `pretrain.sh` after changing `num_initial_data` to `128`, and replacing `output_dir` with the directory you want to save the model.
 - NewsQA-initialized model: Run `pretrain.sh` after changing `data_type` to `newsqa`, removing `--num_initial_data 512`, and replacing `output_dir` with the directory you want to save the model.
+- To Do: add the model without CLS head
 
 ### Bandit Learning
 We iteratively improve the model via multiple rounds of user interaction.  
@@ -80,6 +80,7 @@ An example script for experiments on different model variants:
 
       python src_utils/write_data_file.py --exp variants  --r_idx 1 --variant fewer
 
+`fewer` for fewer examples per round, to do: complete this part
 
 2. Training: Run `rehearsal.py` to do bandit learning. We perform hyperparameter tuning on `num_train_epochs`, `learning_rate` and `entropy_coeff` as mentioned in the paper.   
 An example script is provided below: (refer to `scripts/rehearsal.sh` for more details.)    
@@ -109,11 +110,6 @@ You should specify the output directory (for storing the model and training log)
 ## Evaluation
 ToDo: add instruction on how to evaluate the model
 
-## Reproduction
-
-### Long-Term Study
-
-### Analysis on Model Variants
 
 To be completed
 
