@@ -1027,7 +1027,6 @@ if __name__ == "__main__":
                         default=0.0,
                         help='0.0 means no threshholding for na probs')
 
-    parser.add_argument('--test_data_type', type=str, help='which data type to test on')
     parser.add_argument(
         '--prepend_title',
         action='store_true',

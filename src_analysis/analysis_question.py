@@ -1,4 +1,4 @@
-from rehearsal import get_feedback_data
+from train_bandit import get_feedback_data
 from transformers import BertTokenizer, DebertaTokenizer, DebertaV2TokenizerFast, DebertaTokenizerFast
 import re
 import json

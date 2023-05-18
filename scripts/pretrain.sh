@@ -1,7 +1,7 @@
 #!/bin/bash
 # replace [output_dir] with the directory you want to save the model
 # replace data_type with newsqa and remove "--num_initial_data 512" to train on NewsQA dataset
-python run_tydi.py \
+python train_initial.py \
   --do_train \
   --do_eval \
   --model microsoft/deberta-v3-base \

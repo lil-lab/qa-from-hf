@@ -2,7 +2,7 @@ import json
 import csv
 import argparse
 
-from run_tydi import get_data, byte_slice, read_squad_dataset
+from train_initial import get_data, byte_slice, read_squad_dataset
 from IPython import embed
 import pathlib
 

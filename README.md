@@ -3,15 +3,17 @@
 Code for [_Continually Improving Extractive QA via Human Feedback_](). Please contact the first authors by email if you have any question.
 
 ## Table of Contents
-- [Table of Contents](#table-of-contents)
-- [Basics](#basics)
-- [Data](#data)
-- [Installation](#installation)
-- [Reproduction](#reproduction)
-  - [Initial Training](#initial-training)
-  - [Bandit Learning](#bandit-learning)
-- [Evaluation](#evaluation)
-- [Citation](#citation)
+- [To Be Completed...](#to-be-completed)
+- [qa-from-hf](#qa-from-hf)
+  - [Table of Contents](#table-of-contents)
+  - [Basics](#basics)
+  - [Data](#data)
+  - [Installation](#installation)
+  - [Reproduction](#reproduction)
+    - [Initial Training](#initial-training)
+    - [Bandit Learning](#bandit-learning)
+  - [Evaluation](#evaluation)
+  - [Citation](#citation)
 
 ## Basics
 Brief intro to each folder and file at the root:
@@ -24,8 +26,8 @@ Brief intro to each folder and file at the root:
 7. `generate_prob.py`: The script we used to store the generation probability in the data files.
 8. `random_indices_squad2.txt`: The random indices we use to shuffle the SQuAD2.0 initial data. Will need this file to reproduce our initial model.
 9.  `model.py`: Script for model defination.
-10. `rehearsal.py`: Training script for bandit learning.
-11. `run_tydi.py`: Training script for initial model training.
+10. `train_bandit.py`: Training script for bandit learning.
+11. `train_initial.py`: Training script for initial model training.
 
 
 ## Data
@@ -40,7 +42,7 @@ You can find all other data used in our paper in the `data` folder:
 - `full-test-long-term.jsonl.gz`: Full test set collected concurrently with the feedback data during the long-term study.
 - `full-test-parallel.jsonl.gz`: Full test set collected concurrently with the feedback data during the study of different model variants. 
 - `tydiqa-v1.0-dev.jsonl.gz`: TyDiQA development set. We only consider the English portion and exclude the Yes/No questions. 
-- `test_feedback.txt`: This text file should contain the dataset you would like to evaluate your model on. Each line is formatted as \[feedback type\]\\t\[file name\].
+- `test_files.txt`: This text file should contain the dataset you would like to evaluate your model on. Each line is formatted as \[feedback type\]\\t\[file name\].
 
 
 
@@ -79,11 +81,11 @@ An example script for experiments on different model variants:
 
 `fewer` for fewer examples per round, to do: complete this part
 
-2. Training: Run `rehearsal.py` to do bandit learning. We perform hyperparameter tuning on `num_train_epochs`, `learning_rate` and `entropy_coeff` as mentioned in the paper.   
-An example script is provided below: (refer to `scripts/rehearsal.sh` for more details.)    
+2. Training: Run `train_bandit.py` to do bandit learning. We perform hyperparameter tuning on `num_train_epochs`, `learning_rate` and `entropy_coeff` as mentioned in the paper.   
+An example script is provided below: (refer to `scripts/train_bandit.sh` for more details.)    
 You should specify `output_dir` which is the the output directory (for storing the model and training log) and, `initialize_model_from_checkpoint` which is the path to the model that you want to start with. For Round 1, this model path should be that of an initial model obtrained from inital training.
 
-        python rehearsal.py   --do_train  \
+        python train_bandit.py   --do_train  \
                               --do_eval   \
                               --train_file train_files.txt   \
                               --output_dir [output_dir]   \
@@ -106,12 +108,27 @@ You should specify `output_dir` which is the the output directory (for storing t
 For the next round of bandit learning, repeat the above 2 steps. At every round, remember to change `\[model_path\]` in step 2 to be the best-performing model on the development set from the previous round.  
 
 ## Evaluation
-ToDo: add instruction on how to evaluate the model
+You should modify `test_files.txt` first to indicate which files you would like to test on. Each line represents a test file, and should be formatted as \[feedback type\]\\t\[file name\].  
+The `test_files.txt` in the repo list all the possible sets to evaluate on. 
+
+To run evaluation, simply run `train_bandit.py` with proper arguments.  
+Let's say you store the model at path "`/path/to/model/saved_checkpoint`". An example script is as follows: (refer to `scripts/test.sh` for more details)  
 
 
-To be completed
+      python train_bandit.py \
+            --do_eval \
+            --eval_test \
+            --model microsoft/deberta-v3-base \
+            --output_dir  /path/to/model \
+            --test_file data/test_files.txt \
+            --initialize_model_from_checkpoint /path/to/model \
+            --checkpoint_name saved_checkpoint  \
+            --version_2_with_negative \
+            --prepend_title \
+            --add_classifier          
 
 
+The results of the evaluation will be stored at `/path/to/model/` and printed as standard output.
 
 
 ## Citation
