@@ -1,19 +1,16 @@
-# To Be Completed...
 # qa-from-hf
 Code for [_Continually Improving Extractive QA via Human Feedback_](). Please contact the first authors by email if you have any question.
 
 ## Table of Contents
-- [To Be Completed...](#to-be-completed)
-- [qa-from-hf](#qa-from-hf)
-  - [Table of Contents](#table-of-contents)
-  - [Basics](#basics)
-  - [Data](#data)
-  - [Installation](#installation)
-  - [Reproduction](#reproduction)
-    - [Initial Training](#initial-training)
-    - [Bandit Learning](#bandit-learning)
-  - [Evaluation](#evaluation)
-  - [Citation](#citation)
+- [Table of Contents](#table-of-contents)
+- [Basics](#basics)
+- [Data](#data)
+- [Installation](#installation)
+- [Reproduction](#reproduction)
+  - [Initial Training](#initial-training)
+  - [Bandit Learning](#bandit-learning)
+- [Evaluation](#evaluation)
+- [Citation](#citation)
 
 ## Basics
 Brief intro to each folder and file at the root:
@@ -83,13 +80,14 @@ An example script for experiments on different model variants:
 
 2. Training: Run `train_bandit.py` to do bandit learning. We perform hyperparameter tuning on `num_train_epochs`, `learning_rate` and `entropy_coeff` as mentioned in the paper.   
 An example script is provided below: (refer to `scripts/train_bandit.sh` for more details.)    
-You should specify `output_dir` which is the the output directory (for storing the model and training log) and, `initialize_model_from_checkpoint` which is the path to the model that you want to start with. For Round 1, this model path should be that of an initial model obtrained from inital training.
+You should specify `output_dir` which is the the output directory (for storing the model and training log) and, `initialize_model_from_checkpoint` and `checkpoint_name` which are the path to and name of the model that you want to start with. For Round 1, this model path should be that of an initial model obtrained from inital training.
 
         python train_bandit.py   --do_train  \
                               --do_eval   \
                               --train_file train_files.txt   \
-                              --output_dir [output_dir]   \
-                              --initialize_model_from_checkpoint [model_path]   \
+                              --output_dir [your_output_dir]   \
+                              --initialize_model_from_checkpoint [your_model_path]   \
+                              --checkpoint_name [your_model_name]  \
                               --dev_file data/Dev-400.jsonl.gz   \
                               --num_train_epochs 30   \
                               --learning_rate 3e-6   \
@@ -105,30 +103,29 @@ You should specify `output_dir` which is the the output directory (for storing t
                               --rehearsal   
 
 
-For the next round of bandit learning, repeat the above 2 steps. At every round, remember to change `\[model_path\]` in step 2 to be the best-performing model on the development set from the previous round.  
+For the next round of bandit learning, repeat the above 2 steps. At every round, remember to change `initialize_model_from_checkpoint` in step 2 to be the best-performing model on the development set from the previous round.  
 
 ## Evaluation
-You should modify `test_files.txt` first to indicate which files you would like to test on. Each line represents a test file, and should be formatted as \[feedback type\]\\t\[file name\].  
-The example `test_files.txt` in the repo list all the possible sets to evaluate on. 
+First, you need to specify which datasets/files you would like to evaluate your model on. You can modify `test_files.txt` to indicate which files you would like to test on. Each line represents a test file, and should be formatted as \[feedback type\]\\t\[file name\].  The example `test_files.txt` in the repo lists all possible datasets that you can evaluate on. 
 
-To run evaluation, simply run `train_bandit.py` with proper arguments.  
-Let's say you store the model at path "`/path/to/model/saved_checkpoint`". An example script is as follows: (refer to `scripts/test.sh` for more details)  
+To conduct the evaluation, run `train_bandit.py` with proper arguments: `output_dir` which is the the output directory for evaluation results, `initialize_model_from_checkpoint` and `checkpoint_name` which are the path to and name of the model that you want to evaluate.
+An example script is as follows: (refer to `scripts/test.sh` for more details)  
 
 
       python train_bandit.py \
             --do_eval \
             --eval_test \
             --model microsoft/deberta-v3-base \
-            --output_dir  /path/to/model \
             --test_file data/test_files.txt \
-            --initialize_model_from_checkpoint /path/to/model \
-            --checkpoint_name saved_checkpoint  \
+            --output_dir  [your_output_dir] \
+            --initialize_model_from_checkpoint [your_model_path]  \
+            --checkpoint_name [your_model_name]  \
             --version_2_with_negative \
             --prepend_title \
             --add_classifier          
 
 
-The results of the evaluation will be stored at `/path/to/model/` and printed as standard output.
+The results of the evaluation will be stored at the specified `output_dir` and printed as standard output.
 
 
 ## Citation
