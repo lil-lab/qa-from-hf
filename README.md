@@ -60,7 +60,7 @@ We train an initial DeBERTaV3 model on a set of random sampled 512 SQuAD2 exampl
 - 512-SQuAD2-initialized model: Run `pretrain.sh` after replacing `output_dir` with the directory you want to save the model.
 - 128-SQuAD2-initialized model: Run `pretrain.sh` after changing `num_initial_data` to `128`, and replacing `output_dir` with the directory you want to save the model.
 - NewsQA-initialized model: Run `pretrain.sh` after changing `data_type` to `newsqa`, removing `--num_initial_data 512`, and replacing `output_dir` with the directory you want to save the model.
-- To Do: add the model without CLS head
+
 
 ### Bandit Learning
 We iteratively improve the model via multiple rounds of user interaction. At each round, the pipelien is to specify the feedback data for training, and then conduct the bandit learning. Concrete steps are as follows:
@@ -78,8 +78,8 @@ An example script for experiments on different model variants:
 `fewer` for fewer examples per round,  `default` for default setup, `newsqa` for domain adaptation from NewsQA, `noclass` for ablation on classification head, and `weaker` for starting with a weaker initial model.
 
 2. Training: Run `train_bandit.py` to do bandit learning. We perform hyperparameter tuning on `num_train_epochs`, `learning_rate` and `entropy_coeff` as mentioned in the paper.   
-An example script is provided below: (refer to `scripts/train_bandit.sh` for more details.)    
-You should specify `output_dir` which is the the output directory (for storing the model and training log) and, `initialize_model_from_checkpoint` and `checkpoint_name` which are the path to and name of the model that you want to start with. For Round 1, this model path should be that of an initial model obtrained from inital training.
+An example script is provided below: 
+(refer to `scripts/train_bandit.sh` for more details)    
 
         python train_bandit.py   --do_train  \
                               --do_eval   \
@@ -100,6 +100,7 @@ You should specify `output_dir` which is the the output directory (for storing t
                               --turn_off_dropout   \
                               --add_classifier   \
                               --rehearsal   
+You should specify `output_dir` which is the the output directory (for storing the model and training log) and, `initialize_model_from_checkpoint` and `checkpoint_name` which are the path to and name of the model that you want to start with. For Round 1, this model path should be that of an initial model obtrained from inital training. For ablation on classification head, remeber to remove `--add_classifier`.
 
 
 For the next round of bandit learning, repeat the above 2 steps. At every round, remember to change `initialize_model_from_checkpoint` in step 2 to be the best-performing model on the development set from the previous round.  
@@ -128,6 +129,9 @@ The results of the evaluation will be stored at the specified `output_dir` and p
 
 
 ## Citation
-```
-
-```
+      @InProceedings{Gao23continually,
+      author    = {Ge Gao, Hung-Ting Chen, Yoav Artzi, and Eunsol Choi},
+      title     = {Continually Improving Extractive QA via Human Feedback},
+      booktitle = {arXiv},
+      year      = {2023}
+      }    
