@@ -63,7 +63,7 @@ We train an initial DeBERTaV3 model on a set of random sampled 512 SQuAD2 exampl
 
 
 ### Bandit Learning
-We iteratively improve the model via multiple rounds of user interaction. At each round, the pipelien is to specify the feedback data for training, and then conduct the bandit learning. Concrete steps are as follows:
+We iteratively improve the model via multiple rounds of user interaction. At each round, the pipeline is to specify the feedback data for training, and then conduct the bandit learning. Concrete steps are as follows:
 
 1. Specifiy Training Data: Before each round of bandit learning, you should specify the training data by modifying `train_files.txt`. To do so, you could simply run `src_utils/write_data_file.py` with corresponding arguments.  
 
