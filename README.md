@@ -132,6 +132,6 @@ The results of the evaluation will be stored at the specified `output_dir` and p
       @InProceedings{Gao23continually,
       author    = {Ge Gao, Hung-Ting Chen, Yoav Artzi, and Eunsol Choi},
       title     = {Continually Improving Extractive QA via Human Feedback},
-      booktitle = {arXiv},
+      booktitle = {EMNLP},
       year      = {2023}
       }    
